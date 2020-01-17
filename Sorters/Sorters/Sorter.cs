@@ -13,6 +13,9 @@ namespace Sorters
 		/// <param name="sortType">The <see cref="SortType"/> to detemine which sorting algorithm to use.</param>
 		public static void sort<T> (this T [] array, SortType sortType) where T : IComparable<T>
 		{
+			if (array == null)
+				throw new ArgumentNullException (nameof (array), "Cannot sort a null array.");
+
 			switch (sortType)
 			{
 				case SortType.Bubble:
@@ -29,17 +32,27 @@ namespace Sorters
 
 		private static void bubbleSort<T> (T [] array) where T : IComparable<T>
 		{
-
+			throw new NotImplementedException ();
 		}
 
 		private static void mergeSort<T> (T [] array) where T : IComparable<T>
 		{
-
+			throw new NotImplementedException();
 		}
 
-		private static void quickSort<T> (T [] array) where T : IComparable<T> => quickSort (array, 0, array.Length - 1);
+		private static void quickSort<T> (T [] array) where T : IComparable<T>
+		{
+			if (array == null)
+				throw new ArgumentNullException (nameof (array), "Cannot sort a null array.");
+
+			quickSort (array, 0, array.Length - 1);
+		}
+
 		private static void quickSort<T> (T [] array, int leftPointerIndex, int rightPointerIndex) where T : IComparable<T>
 		{
+			if (array == null)
+				throw new ArgumentNullException (nameof (array), "Cannot sort a null array.");
+
 			if (array.Length <= 1 || leftPointerIndex >= rightPointerIndex)
 				return;
 
@@ -50,6 +63,9 @@ namespace Sorters
 
 		private static int quickSortPartition<T> (T [] array, int leftPointerIndex, int rightPointerIndex) where T : IComparable<T>
 		{
+			if (array == null)
+				throw new ArgumentNullException (nameof (array), "Cannot partition a null array.");
+
 			T pivotValue = array [leftPointerIndex + (rightPointerIndex - leftPointerIndex) / 2];
 
 			while (true)
